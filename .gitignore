@@ -1,0 +1,19 @@
+# Code Configuration
+.vscode/*
+.prettierrc
+
+# React JS
+node_modules/
+build/*
+dist/*
+dist-ssr
+package-lock.json
+
+# Firebase
+.firebase/*
+.firebaserc
+firebase.json
+
+# Stylesheets
+*.sass
+*.scss

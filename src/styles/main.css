@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins-Regular.ttf');
+}
+
+html{
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+#root{
+    background-image: url('../assets/images/background.jpg');
+    width: 100%;
+}

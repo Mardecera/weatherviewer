@@ -1,0 +1,147 @@
+@charset "UTF-8";
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.container .contain {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.container .contain .search {
+  margin: 2rem;
+  padding: 2rem;
+  background-color: transparent;
+  border-radius: 0.3rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color .3s ease-in-out, width 5s ease;
+  width: min-content;
+  height: min-content;
+  display: flex;
+}
+
+.container .contain .search input {
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  width: 0%;
+  transition: width .3s ease;
+  background-color: transparent;
+}
+
+.container .contain .search button {
+  display: none;
+}
+
+.container .contain .search span {
+  background-color: #d6d6d6;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+.container .contain .search.open {
+  width: 90%;
+  background-color: white;
+  padding: 2rem;
+}
+
+.container .contain .search.open input {
+  width: 100%;
+  display: inline-block;
+}
+
+.container .information {
+  width: max-content;
+  margin: 0 auto;
+}
+
+.container .information .informationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.container .information .informationContent > div {
+  margin: 0 auto;
+}
+
+.container .information .informationContent .infoLocation {
+  color: white;
+  font-size: 2rem;
+}
+
+.container .information .informationContent .infoLocation .regionLocation {
+  font-size: 3rem;
+}
+
+.container .information .informationContent .infoLocation .countryLocation {
+  font-size: 4rem;
+}
+
+.container .information .informationContent .infoTemperature {
+  color: white;
+  font-size: 15rem;
+  position: relative;
+}
+
+.container .information .informationContent .infoTemperature .value::after {
+  content: '°C';
+  position: absolute;
+  top: 0;
+  font-size: 5rem;
+}
+
+.container .information .informationContent .infoTemperature .description {
+  font-size: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.container .information .informationContent .infoTemperature .description img {
+  border-radius: .3rem;
+}
+
+.container .information .informationContent .infoExtras {
+  width: 100%;
+}
+
+.container .information .informationContent .infoExtras ul {
+  padding-left: 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.container .information .informationContent .infoExtras ul .extraItem {
+  background-color: rgba(255, 255, 255, 0.473);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: #61648d;
+}
+
+.container .information .informationContent .infoExtras ul .extraItem .extraItemTitle {
+  font-weight: bolder;
+  letter-spacing: 1px;
+  color: #4c4e66;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.container .information .informationContent .infoExtras ul .extraItem .extraItemValue {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
