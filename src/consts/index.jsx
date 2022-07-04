@@ -1,8 +1,8 @@
 const logotipo = 'mardecera'
 const urlInitial = 'http://api.weatherstack.com/current'
-const key = 'access_key=112552a37a94bb1814fe804cd09710b5'
+const apiKey = '7c799227f894fbfb20a2a08b6372090f'
+const url = `${urlInitial}?${apiKey}&query=`
 
-const url = `${urlInitial}?${key}&query=`
 const options = {
     method: 'GET',
     headers: {
@@ -11,44 +11,8 @@ const options = {
     },
 }
 
-const dataDefault = {
-    request: {
-        type: 'City',
-        query: 'Cullera, Spain',
-        language: 'en',
-        unit: 'm',
-    },
-    location: {
-        name: 'Cullera',
-        country: 'Spain',
-        region: 'Andalucia',
-        lat: '39.167',
-        lon: '-0.250',
-        timezone_id: 'Europe/Madrid',
-        localtime: '2022-07-03 19:32',
-        localtime_epoch: 1656876720,
-        utc_offset: '2.0',
-    },
-    current: {
-        observation_time: '05:32 PM',
-        temperature: 28,
-        weather_code: 116,
-        weather_icons: [
-            'https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png',
-        ],
-        weather_descriptions: ['Partly cloudy'],
-        wind_speed: 26,
-        wind_degree: 33,
-        wind_dir: 'NNE',
-        pressure: 1016,
-        precip: 0,
-        humidity: 51,
-        cloudcover: 27,
-        feelslike: 29,
-        uv_index: 7,
-        visibility: 10,
-        is_day: 'yes',
-    },
-}
+// 7c799227f894fbfb20a2a08b6372090f
+// http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=7c799227f894fbfb20a2a08b6372090f
+// https://api.openweathermap.org/data/2.5/weather?lat=51.5073219&lon=-0.1276474&appid=7c799227f894fbfb20a2a08b6372090f
 
-export { url, logotipo, options, dataDefault }
+export { url, logotipo, options, apiKey }

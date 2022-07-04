@@ -32,7 +32,7 @@
     display: block;
   }
 
-  div, span{
+  *{
     box-sizing: border-box;
   }
   

@@ -1,31 +1,33 @@
 import { useEffect, useRef, useState } from 'react'
-import { url, dataDefault } from '../../consts'
 import { searchIcon } from '../../assets'
-import { options } from '../../consts'
+import { getCurrentWeatherData } from '../../utils'
 import styles from './index.module.css'
 
 const Home = () => {
-    const [data, setData] = useState(dataDefault)
-    const [query, setQuery] = useState('cullera')
+    const [data, setData] = useState(null)
     const [show, setShow] = useState(false)
     const inputRef = useRef('')
 
     useEffect(() => {
-        console.log('ddddd')
-        fetch(url + `${query}`, options)
-            .then((response) => response.json())
-            .then((data) => setData(data))
-            .catch((err) => setData(dataDefault))
-    }, [query])
+        const fetchData = async () => {
+            const info = await getCurrentWeatherData('cullera')
+            setData(info)
+        }
+
+        fetchData()
+    }, [])
 
     const handleToggle = () => setShow(!show)
 
-    const submitQuery = (event) => {
+    const submitQuery = async (event) => {
         event.preventDefault()
-        setQuery(inputRef.current.value)
+        const info = await getCurrentWeatherData(inputRef.current.value)
+        setData(info)
     }
 
-    return (
+    return data === null ? (
+        <div>Cargando...</div>
+    ) : (
         <div className={styles.container}>
             <div className={styles.contain}>
                 <form
@@ -39,7 +41,7 @@ const Home = () => {
                     />
                     <button type="submit"></button>
                     <span
-                        className="icon-search"
+                        className={styles.iconSearch}
                         onClick={() => handleToggle()}
                     >
                         <img src={searchIcon} alt="search-icon" />
@@ -49,45 +51,45 @@ const Home = () => {
                     <div className={styles.informationContent}>
                         <div className={styles.infoLocation}>
                             <span className={styles.nameLocation}>
-                                {data.location.name + ', '}
+                                {data.name + ', '}
                             </span>
                             <span className={styles.regionLocation}>
-                                {data.location.region + ', '}
+                                {data.state + ', '}
                             </span>
                             <span className={styles.countryLocation}>
-                                {data.location.country}
+                                {data.country}
                             </span>
                         </div>
                         <div className={styles.infoTemperature}>
                             <span className={styles.value}>
-                                {data.current.temperature}
+                                {data.main.temp.toFixed(1)}
+                                <span className={styles.tempSymbol}>°C</span>
                             </span>
-                            {/* <span className={styles.type}>°C</span> */}
                             <div className={styles.description}>
-                                <span>{data.current.weather_descriptions}</span>
+                                <span>{data.weather.description}</span>
                                 <img
-                                    src={data.current.weather_icons[0]}
-                                    alt={data.current.weather_descriptions}
+                                    src={`http://openweathermap.org/img/wn/${data.weather.icon}@2x.png`}
+                                    alt={data.weather.description}
                                     width={'40px'}
                                 />
                             </div>
                         </div>
                         <div className={styles.infoExtras}>
                             <ul className={styles.extraContent}>
-                                <li className={styles.extraItem}>
+                                {/* <li className={styles.extraItem}>
                                     <span className={styles.extraItemTitle}>
                                         Precipitation
                                     </span>
                                     <span className={styles.extraItemValue}>
-                                        {data.current.precip + ' mm'}
+                                        {'data.current.precip' + ' mm'}
                                     </span>
-                                </li>
+                                </li> */}
                                 <li className={styles.extraItem}>
                                     <span className={styles.extraItemTitle}>
                                         Humidity
                                     </span>
                                     <span className={styles.extraItemValue}>
-                                        {data.current.humidity + ' %'}
+                                        {data.main.humidity + ' %'}
                                     </span>
                                 </li>
                                 <li className={styles.extraItem}>
@@ -95,15 +97,7 @@ const Home = () => {
                                         Pressure
                                     </span>
                                     <span className={styles.extraItemValue}>
-                                        {data.current.pressure + ' mb'}
-                                    </span>
-                                </li>
-                                <li className={styles.extraItem}>
-                                    <span className={styles.extraItemTitle}>
-                                        UV
-                                    </span>
-                                    <span className={styles.extraItemValue}>
-                                        {data.current.uv_index}
+                                        {data.main.pressure + ' mb'}
                                     </span>
                                 </li>
                                 <li className={styles.extraItem}>
@@ -111,7 +105,7 @@ const Home = () => {
                                         Wind Speed
                                     </span>
                                     <span className={styles.extraItemValue}>
-                                        {data.current.wind_speed + ' km/h'}
+                                        {data.wind.speed + ' km/h'}
                                     </span>
                                 </li>
                             </ul>
