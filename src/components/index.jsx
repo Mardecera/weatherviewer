@@ -1,5 +1,5 @@
 import Footer from './Footer'
-import ShowInfo from './ShowInfo'
 import Search from './Search'
+import Loading from './Loading'
 
-export { Footer, ShowInfo, Search }
+export { Footer, Search, Loading  }

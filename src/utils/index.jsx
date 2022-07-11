@@ -1,4 +1,5 @@
 import getCurrentWeatherData from './getCurrentWeatherData'
 import getGeoCoding from './getGeoCoding'
+import getCountryName from './getCountryName'
 
-export { getCurrentWeatherData, getGeoCoding }
+export { getCurrentWeatherData, getGeoCoding, getCountryName }
