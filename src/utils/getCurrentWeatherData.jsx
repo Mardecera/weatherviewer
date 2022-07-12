@@ -1,4 +1,3 @@
-import getGeoCoding from './getGeoCoding'
 import { apiKey } from '../consts'
 
 const getCurrentWeatherData = async ({ lat, lon, name, state, country }) => {

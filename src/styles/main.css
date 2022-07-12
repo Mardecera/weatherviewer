@@ -19,3 +19,8 @@ body{
     height: 100%;
     overflow-x: hidden;
 }
+
+button, input{
+    outline: none;
+    border: none;
+}

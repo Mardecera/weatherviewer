@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { apiKey, options } from '../consts'
+import { apiKey } from '../consts'
 
 const getGeoCoding = async (locationName) => {
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=5&appid=${apiKey}`
