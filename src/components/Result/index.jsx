@@ -16,7 +16,6 @@ const Result = ({ data, setData }) => {
         event.preventDefault()
         const currentMatches = await getGeoCoding(inputRef.current.value)
         setMatches(currentMatches)
-        matchesRef.current.focus()
     }
 
     const getMatch = async (currentMatch) => {

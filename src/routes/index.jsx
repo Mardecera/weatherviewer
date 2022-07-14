@@ -5,8 +5,12 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={"/"} element={<Home />}></Route>
-                <Route path={"/*"} status={404} element={<PageNotFound />}></Route>
+                <Route path={'/'} element={<Home />}></Route>
+                <Route
+                    path={'/*'}
+                    status={404}
+                    element={<PageNotFound />}
+                ></Route>
             </Routes>
         </BrowserRouter>
     )

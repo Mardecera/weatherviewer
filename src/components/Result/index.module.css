@@ -15,12 +15,12 @@
 .container .contain .search {
   background-color: white;
   border-radius: 0.3rem;
-  transition: background-color .3s ease-in-out, width 5s ease;
+  transition: background-color 0.3s ease-in-out, width 5s ease;
   width: 100%;
   display: flex;
   position: relative;
   z-index: 2;
-  transition: all .5 ease;
+  transition: all 0.5 ease;
   padding: 1rem 2rem;
   gap: 1rem;
 }
@@ -52,7 +52,7 @@
   background-color: white;
   width: 100%;
   transform: translateY(102%);
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   max-height: 50vh;
   overflow-y: auto;
 }
@@ -133,13 +133,13 @@
 .container .information .informationContent .infoTemperature .value {
   display: flex;
   width: max-content;
-  font-size: .9em;
+  font-size: 0.9em;
   align-self: center;
 }
 
 @media (max-width: 618px) {
   .container .information .informationContent .infoTemperature .value {
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
 
@@ -152,11 +152,11 @@
 }
 
 .container .information .informationContent .infoTemperature .description {
-  font-size: .9rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rem .5rem;
+  padding: 0rem 0.5rem;
   background-color: rgba(41, 53, 80, 0.5);
   border-radius: 100px;
   width: max-content;
@@ -168,7 +168,7 @@
 }
 
 .container .information .informationContent .infoTemperature .description img {
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   width: 50px;
   object-fit: contain;
 }
