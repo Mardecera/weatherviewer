@@ -1,11 +1,21 @@
 import { useRef, useState } from 'react'
-import {
-    getCountryName,
-    getCurrentWeatherData,
-    getGeoCoding,
-} from '../../utils'
-import { urlIcon } from '../../consts'
+import { getCurrentWeatherData, getGeoCoding, getDataMatch } from '../../utils'
+import { urlIcon, searchInputText } from '../../consts'
 import styles from './index.module.css'
+
+const ShowMatches = ({ matches, setMatch }) => (
+    <>
+        {matches.map((match, index) => (
+            <div
+                key={index}
+                className={styles.matchesItem}
+                onClick={() => setMatch(match)}
+            >
+                <p>{getDataMatch(match)}</p>
+            </div>
+        ))}
+    </>
+)
 
 const Result = ({ data, setData }) => {
     const [matches, setMatches] = useState([])
@@ -18,17 +28,11 @@ const Result = ({ data, setData }) => {
         setMatches(currentMatches)
     }
 
-    const getMatch = async (currentMatch) => {
+    const setMatch = async (currentMatch) => {
         const info = await getCurrentWeatherData(currentMatch)
         setData(info)
         inputRef.current.value = ''
         setMatches([])
-    }
-
-    const showDataMatch = (currentMatch) => {
-        const { name, state, country } = currentMatch
-        const countryName = getCountryName(country)
-        return `${name ?? ''} ${state ? '- ' + state : ''} - ${countryName}`
     }
 
     return (
@@ -40,19 +44,11 @@ const Result = ({ data, setData }) => {
                 >
                     <input
                         type="text"
-                        placeholder="Que deseas buscar..."
+                        placeholder={searchInputText}
                         ref={inputRef}
                     />
                     <div className={styles.matchesList} ref={matchesRef}>
-                        {matches.map((match, index) => (
-                            <div
-                                key={index}
-                                className={styles.matchesItem}
-                                onClick={() => getMatch(match)}
-                            >
-                                {showDataMatch(match)}
-                            </div>
-                        ))}
+                        <ShowMatches matches={matches} setMatch={setMatch} />
                     </div>
                     <button
                         type="submit"
@@ -66,24 +62,28 @@ const Result = ({ data, setData }) => {
                     <div className={styles.informationContent}>
                         <div className={styles.infoLocation}>
                             <span className={styles.nameLocation}>
-                                {data.name}
+                                {data.location.name}
                             </span>
                             <span className={styles.regionLocation}>
-                                {data.state}
+                                {data.location.state}
                             </span>
                             <span className={styles.countryLocation}>
-                                {', ' + getCountryName(data.country)}
+                                {data.location.state ? ', ' : null}
+                                {data.location.country}
                             </span>
                         </div>
                         <div className={styles.infoTemperature}>
                             <div className={styles.value}>
-                                <div>{data.main.temp.toFixed(1)}</div>
+                                <div>{data.weather.temperature}</div>
                                 <div className={styles.tempSymbol}>°C</div>
                             </div>
                             <div className={styles.description}>
-                                <span>{data.weather.description}</span>
+                                <span>
+                                    Feels like {data.weather.feels_like}.{' '}
+                                    {data.weather.description}
+                                </span>
                                 <img
-                                    src={`${urlIcon}${data.weather.icon}@2x.png`}
+                                    src={`${urlIcon}${data.weather.icon}`}
                                     alt={data.weather.description}
                                     width={'40px'}
                                 />
@@ -91,30 +91,10 @@ const Result = ({ data, setData }) => {
                         </div>
                         <div className={styles.infoExtras}>
                             <ul className={styles.extraContent}>
-                                <li className={styles.extraItem}>
-                                    <span className={styles.extraItemTitle}>
-                                        Humidity
-                                    </span>
-                                    <span className={styles.extraItemValue}>
-                                        {data.main.humidity + ' %'}
-                                    </span>
-                                </li>
-                                <li className={styles.extraItem}>
-                                    <span className={styles.extraItemTitle}>
-                                        Pressure
-                                    </span>
-                                    <span className={styles.extraItemValue}>
-                                        {data.main.pressure + ' mb'}
-                                    </span>
-                                </li>
-                                <li className={styles.extraItem}>
-                                    <span className={styles.extraItemTitle}>
-                                        Wind Speed
-                                    </span>
-                                    <span className={styles.extraItemValue}>
-                                        {data.wind.speed + ' km/h'}
-                                    </span>
-                                </li>
+                                <li>{`Humidity: ${data.weather.humidity}`}</li>
+                                <li>{`Pressure: ${data.weather.pressure}`}</li>
+                                <li>{`Wind Speed: ${data.weather.wind_speed}`}</li>
+                                <li>{`Visibility: ${data.weather.visibility}`}</li>
                             </ul>
                         </div>
                     </div>

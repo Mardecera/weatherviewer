@@ -11,10 +11,15 @@ html {
 
 body {
     height: 100%;
+    background: rgb(80, 96, 164);
+    background: linear-gradient(
+        167deg,
+        rgba(80, 96, 164, 1) 0%,
+        rgba(115, 190, 205, 1) 100%
+    );
 }
 
 #root {
-    background-image: url('../assets/images/background.jpg');
     width: 100%;
     height: 100%;
     overflow-x: hidden;

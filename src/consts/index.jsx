@@ -1,6 +1,8 @@
 const logotipo = 'mardecera'
 const apiKey = '7c799227f894fbfb20a2a08b6372090f'
-const urlIcon = 'http://openweathermap.org/img/wn/'
+const apiURL = 'https://api.openweathermap.org'
+const urlIcon = 'https://openweathermap.org/img/wn/'
+const searchInputText = 'What do you want to look for ?'
 
 const options = {
     method: 'GET',
@@ -10,4 +12,4 @@ const options = {
     },
 }
 
-export { logotipo, options, apiKey, urlIcon }
+export { logotipo, options, apiKey, apiURL, urlIcon, searchInputText }
