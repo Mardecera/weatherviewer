@@ -8,10 +8,9 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             const currentMatch = await getGeoCoding('Cullera')
-            console.log(currentMatch)
-            const info = await getCurrentWeatherData(currentMatch[0])
-            console.log(info)
-            setData(info)
+            const weatherData = await getCurrentWeatherData(currentMatch[0])
+            console.log(weatherData)
+            setData(weatherData)
         }
 
         fetchData()

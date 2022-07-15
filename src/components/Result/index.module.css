@@ -8,21 +8,27 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 5em;
+  gap: 3em;
   margin: 2rem;
 }
 
 .container .contain .search {
   background-color: white;
   border-radius: 0.3rem;
-  transition: background-color .3s ease-in-out, width 5s ease;
+  transition: background-color 0.3s ease-in-out, width 5s ease;
   width: 100%;
   display: flex;
   position: relative;
   z-index: 2;
-  transition: all .5 ease;
+  transition: all 0.5 ease;
   padding: 1rem 2rem;
   gap: 1rem;
+}
+
+@media (max-width: 426px) {
+  .container .contain .search {
+    padding: 1rem;
+  }
 }
 
 .container .contain .search input {
@@ -41,25 +47,31 @@
 .container .contain .search .iconSearch button {
   padding: 1rem 2rem;
   border-radius: 100px;
-  background-color: #3f9fc5;
+  background: #5060a4;
   color: white;
 }
 
 .container .contain .search .matchesList {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -0.5rem;
   background-color: white;
   width: 100%;
   transform: translateY(102%);
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   max-height: 50vh;
   overflow-y: auto;
+  box-shadow: 7px 7px 20px rgba(71, 82, 102, 0.5);
 }
 
 .container .contain .search .matchesList .matchesItem {
   padding: 2rem;
   border-bottom: 1px solid #dddddd;
+}
+
+.container .contain .search .matchesList .matchesItem p {
+  pointer-events: none;
+  margin: 0;
 }
 
 .container .contain .search .matchesList .matchesItem:hover {
@@ -116,6 +128,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 618px) {
@@ -133,13 +146,13 @@
 .container .information .informationContent .infoTemperature .value {
   display: flex;
   width: max-content;
-  font-size: .9em;
+  font-size: 0.9em;
   align-self: center;
 }
 
 @media (max-width: 618px) {
   .container .information .informationContent .infoTemperature .value {
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
 
@@ -152,14 +165,15 @@
 }
 
 .container .information .informationContent .infoTemperature .description {
-  font-size: .9rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0rem .5rem;
+  padding: 0rem 0.5rem;
   background-color: rgba(41, 53, 80, 0.5);
   border-radius: 100px;
   width: max-content;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -168,7 +182,7 @@
 }
 
 .container .information .informationContent .infoTemperature .description img {
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   width: 50px;
   object-fit: contain;
 }
@@ -178,34 +192,34 @@
 }
 
 .container .information .informationContent .infoExtras ul {
-  padding-left: 0;
+  display: flex;
   list-style: none;
   width: 100%;
-  display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.container .information .informationContent .infoExtras ul .extraItem {
-  background-color: rgba(255, 255, 255, 0.473);
-  display: flex;
-  flex-direction: column;
+  background-color: white;
   border-radius: 0.3rem;
-  font-size: 1rem;
-  color: #61648d;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 2rem;
 }
 
-.container .information .informationContent .infoExtras ul .extraItem .extraItemTitle {
-  font-weight: bolder;
-  letter-spacing: 1px;
-  color: #4c4e66;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #b4b4b4;
+@media (max-width: 550px) {
+  .container .information .informationContent .infoExtras ul {
+    padding: 2rem;
+    width: max-content;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 2rem;
+  }
 }
 
-.container .information .informationContent .infoExtras ul .extraItem .extraItemValue {
-  text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.container .information .informationContent .infoExtras ul li {
+  width: 40%;
+}
+
+@media (max-width: 550px) {
+  .container .information .informationContent .infoExtras ul li {
+    width: max-content;
+  }
 }
